@@ -1,0 +1,32 @@
+{% extends 'book/index.html' %}
+{% load static %}
+
+{% block title %}Authors{% endblock %}
+{% block toolbar %}<a href="{% url 'create_author' %}" type="button" class="btn btn-sm btn-outline-secondary">Add new author </a>{% endblock %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>author name</th>
+                <th>author surname</th>
+                <th>author patronymic</th>
+                <th>books</th>
+                <th>Update/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+            <tr>
+                <td>{{author.name}}</td>
+                <td>{{author.surname}}</td>
+                <td>{{author.patronymic}}</td>
+                <td><a href="{% url 'books_by_author' author.id %}">show books</a></td>
+                <td><a href="{% url 'update_author' author.id %}" type="button" class="btn btn-sm btn-outline-success">Update</a>
+                    <a href="{% url 'delete_author' author.id %}" type="button" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'book/index.html' %}
+{% load static %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>first name</th>
+                <th>middle name</th>
+                <th>last name</th>
+                <th>books</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{user.first_name}}</td>
+                <td>{{user.middle_name}}</td>
+                <td>{{user.last_name}}</td>
+                <td><a href="{% url 'books_by_user' user.id %}">show books</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

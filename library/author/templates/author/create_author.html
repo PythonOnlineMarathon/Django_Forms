@@ -1,0 +1,14 @@
+{% extends 'book/index.html' %}
+{% load static %}
+
+{% block title %}New authors{% endblock %}
+
+{% block content %}
+    <div class="mb-3">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <input class="btn btn-secondary" type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}

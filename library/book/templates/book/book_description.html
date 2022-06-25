@@ -1,0 +1,16 @@
+{% extends 'book/index.html' %}
+{% load static %}
+
+{% block title %}Book description{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <h3 class="card-header">{{ book.name }}</h3>
+    <div class="card-body">
+        <h5 class="card-title" >By {% for author in book.authors.all %}{{ author }}{% endfor %}</h5>
+        <p class="card-text">{{ book.description }}</p>
+        <a href="#" class="btn btn-secondary">Return to list</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'book/index.html' %}
+{% load static %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-4">
+        <table>
+        <form action="" method="get">
+        {{ form.as_table }}
+        <input class="btn btn-secondary" type="submit" value="Filter">
+        </form>
+        </table>
+    </div>
+    <div class="col-6">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Book title</th>
+                        <th>Available</th>
+                        <th>Authors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                      <td><a href="{% url 'book_description' book_pk=book.pk %}">{{book.id}}</a></td>
+                      <td><a href="{% url 'book_description' book_pk=book.pk %}">{{book.name}}</a></td>
+                      <td>{{book.count}}</td>
+                      <td> {% for author in book.authors.all %}
+                        {{ author }}
+                        {% endfor %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'book/index.html' %}
+{% load static %}
+{% block content %}
+<div class='container'>
+    <h3 class="text-center">Congratulations  <span class="text-info">{{user.first_name}}</span> you took <span class="text-info">{{book.name}} </span></h3>
+</div>
+
+{% endblock %}

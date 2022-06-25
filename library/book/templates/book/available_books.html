@@ -1,0 +1,37 @@
+{% extends 'book/index.html' %}
+{% load static %}
+
+{% block title %}Available Books{% endblock %}
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Book title</th>
+                <th>Available</th>
+                <th>Authors</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        {% if book.count > 0 %}
+            <tr>
+                <td><a class="nav-link text-dark" href="{% url 'book_description' book_pk=book.pk %}">{{book.id}}</a></td>
+                <td><a class="nav-link text-dark" href="{% url 'book_description' book_pk=book.pk %}">{{book.name}}</a></td>
+                <td>{{book.count}}</td>
+                <td> {% for author in book.authors.all %} 
+                    {{ author }}
+                    {%if not forloop.last %}
+                    ,
+                    {% endif %}
+                {% endfor %}
+                </td>
+            </tr>
+            {% endif %}    
+        {% endfor %} 
+        </tbody>
+    </table>
+</div>    
+{% endblock %}
